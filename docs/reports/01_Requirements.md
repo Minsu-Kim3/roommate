@@ -6,10 +6,12 @@
 - FR-05: The system shall allow users to search for potential roommates who has similar compatibility score in the roommate matching system. 
 - FR-06: The system shall allow users to send roommate requests to another users in the searching lists. 
 - FR-07: The system shall notify a student when they receive a roommate request. 
-- FR-08: The system shall allow users to accept or decline the roommate requests that the users received. 
+- FR-08: The system shall allow users to accept or decline the roommate requests that the users received.
+- FR-09: The system shall allow two users to be a roommate pair when the roommate request is accepted. 
+- FR-10: The system shall allow housing administrators to view confirmed roommate pairs.  
 ## 2. Non-Functional Requirements(NFRs)
 - NFR-01: The system shall show the roommate search results within 3 seconds under normal load conditions. 
-- NFR-02: The system shall support up to 500 concurrent users without performance degradation. 
+- NFR-02: The system shall support up to 100 concurrent users without performance degradation. 
 - NFR-03: The system shall calculate the compatibility score within 3 seconds after the profile is selected. 
 - NFR-04: The system shall allow users to complete the creation of an account process within 3 minutes. 
 - NFR-05: The system shall store the user profile data after log out. 
