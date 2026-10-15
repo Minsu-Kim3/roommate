@@ -1,14 +1,12 @@
-
 using System.ComponentModel.DataAnnotations;
+using RoomMate.Data;
 
 namespace RoomMate.Models;
 
 public partial class Profile
 {
-    // Temporary storage for profiles
-    private static readonly Dictionary<int, Profile> profiles = new();
-
     public static Profile CreateProfile(
+        RoomMateDbContext db,
         int userId,
         int sleepSchedule,
         int cleanliness,
@@ -26,20 +24,15 @@ public partial class Profile
             OkWithSmoker = okWithSmoker
         };
 
-        // Validate all fields, including required selections
+        // Validate ratings and required selections
         Validator.ValidateObject(
             profile,
             new ValidationContext(profile),
             validateAllProperties: true);
 
-        // Prevent duplicate profiles
-        if (profiles.ContainsKey(userId))
-        {
-            throw new InvalidOperationException("Profile already exists.");
-        }
-
-        // Save profile temporarily
-        profiles.Add(userId, profile);
+        // Save profile to SQLite
+        db.Profiles.Add(profile);
+        db.SaveChanges();
 
         return profile;
     }

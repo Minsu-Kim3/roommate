@@ -1,5 +1,7 @@
-
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using RoomMate.Data;
 using RoomMate.Models;
 using Xunit;
 
@@ -7,12 +9,38 @@ namespace RoomMate.Tests;
 
 public class ProfileTests
 {
-    // Create a profile with valid information
+    // Create a database for each test
+    private static RoomMateDbContext CreateDatabase(
+        SqliteConnection connection)
+    {
+        connection.Open();
+
+        var options = new DbContextOptionsBuilder<RoomMateDbContext>()
+            .UseSqlite(connection)
+            .Options;
+
+        var db = new RoomMateDbContext(options);
+        db.Database.EnsureCreated();
+
+        return db;
+    }
+
     [Fact]
     public void CreateProfile_Valid()
     {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
+
+        db.Users.Add(new TempUser
+        {
+            UserId = 101,
+            Email = "student101@wsu.edu",
+            Password = "test-only-placeholder"
+        });
+        db.SaveChanges();
+
         Profile profile = Profile.CreateProfile(
-            101, 3, 4, 2, false);
+            db, 101, 3, 4, 2, false);
 
         Assert.Equal(101, profile.UserId);
         Assert.Equal(3, profile.SleepSchedule);
@@ -22,54 +50,80 @@ public class ProfileTests
         Assert.False(profile.OkWithSmoker);
     }
 
-    // Rating must be between 1 and 5
     [Fact]
     public void CreateProfile_InvalidRating()
     {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
+
         Assert.Throws<ValidationException>(() =>
-            Profile.CreateProfile(102, 0, 4, 2, false));
+            Profile.CreateProfile(db, 102, 0, 4, 2, false));
     }
 
-    // IsSmoker is required
     [Fact]
     public void CreateProfile_SmokingNotAnswered()
     {
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
+
         ValidationException ex = Assert.Throws<ValidationException>(() =>
-            Profile.CreateProfile(103, 3, 4, 2, null));
+            Profile.CreateProfile(db, 103, 3, 4, 2, null));
 
         Assert.Equal(
             "Please select whether you are a smoker.",
             ex.Message);
     }
 
-    // A user cannot create two profiles
     [Fact]
     public void CreateProfile_DuplicateUserId()
     {
-        Profile.CreateProfile(104, 3, 4, 2, false);
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
 
+        db.Users.Add(new TempUser
+        {
+            UserId = 104,
+            Email = "student104@wsu.edu",
+            Password = "test-only-placeholder"
+        });
+        db.SaveChanges();
+
+        Profile.CreateProfile(db, 104, 3, 4, 2, false);
+        // Creating another profile with the same UserId should fail
         Assert.Throws<InvalidOperationException>(() =>
-            Profile.CreateProfile(104, 2, 3, 5, true));
+            Profile.CreateProfile(db, 104, 2, 3, 5, true));
     }
 
-    // Get a profile using its UserId
     [Fact]
     public void GetProfileByUserId_Exists()
     {
-        Profile.CreateProfile(105, 3, 4, 2, false);
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
 
-        Profile? profile = Profile.GetProfileByUserId(105);
+        db.Users.Add(new TempUser
+        {
+            UserId = 105,
+            Email = "student105@wsu.edu",
+            Password = "test-only-placeholder"
+        });
+        db.SaveChanges();
+
+        Profile.CreateProfile(db, 105, 3, 4, 2, false);
+
+        Profile? profile = Profile.GetProfileByUserId(db, 105);
 
         Assert.NotNull(profile);
         Assert.Equal(105, profile.UserId);
         Assert.Equal(4, profile.Cleanliness);
     }
 
-    // Return null if the profile does not exist
     [Fact]
     public void GetProfileByUserId_NotFound()
     {
-        Profile? profile = Profile.GetProfileByUserId(-999);
+        using var connection = new SqliteConnection("Data Source=:memory:");
+        using var db = CreateDatabase(connection);
+
+        Profile? profile = Profile.GetProfileByUserId(db, 999);
 
         Assert.Null(profile);
     }

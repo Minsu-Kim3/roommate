@@ -1,16 +1,13 @@
+using RoomMate.Data;
 
 namespace RoomMate.Models;
 
 public partial class Profile
 {
-    // Find a profile using its UserId
-    public static Profile? GetProfileByUserId(int userId)
+    public static Profile? GetProfileByUserId(
+        RoomMateDbContext db, int userId)
     {
-        if (profiles.TryGetValue(userId, out Profile? profile))
-        {
-            return profile;
-        }
-
-        return null;
+        // Find a profile by UserId
+        return db.Profiles.Find(userId);
     }
 }
