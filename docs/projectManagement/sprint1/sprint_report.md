@@ -34,10 +34,10 @@ Here's what went well:
 * Implemented profile features and SQLite database integration.
 * Implemented calculate compatibility score based on two profiles. 
 Here's what we'd like to improve:
-* Item 1
-* Item 2
-* Item x
+* Improve team communication and task distribution.
+* Update the Kanban Board more consistently.
+* Allocate more time for testing and integration.
 Here are changes we plan to implement in the next sprint:
-* Item 1
-* Item 2
-* Item x
+* Complete the User class, User Registration, and User Login features.
+* Connect the database and backend functionality to the website.
+* Implement roommate searching and compatibility-based matching features.
