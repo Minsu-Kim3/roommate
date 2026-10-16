@@ -1,46 +1,27 @@
 # Sprint x Report
 Video Link:
 ## What's New (User Facing)
-* Feature 1 or Bug Fix 1
-* Feature 2 or Bug Fix 2
-* Feature n or Bug Fix n
+* Profile Model
+* Create Profile functionality
+* Get Profile by User ID functionality
+* Compatibility score functionality
+* SQLite profile integration
 ## Work Summary (Developer Facing)
-Provide a one paragraph synposis of what your team accomplished this sprint. Don't
-repeat the "What's New" list of features. Instead, help the instructor understand
-how you went about the work described there, any barriers you overcame, and any
-significant learnings for your team.
+During Sprint 1, we set up the ASP.NET Core project using C# and .NET. We used GitHub branches, issues, and a Kanban board to manage tasks and collaborate. We developed the Profile features, including creating user profiles, retrieving profiles by user ID, and calculating compatibility scores. We also created UML diagrams to design and understand the system structure and interactions.
 ## Unfinished Work
-If applicable, explain the work you did not finish in this sprint. For issues/user
-stories in the current sprint that have not been closed, (a) any progress toward
-completion of the issues has been clearly tracked (by checking the checkboxes of
-acceptance criteria), (b) a comment has been added to the issue to explain why the
-issue could not be completed (e.g., "we ran out of time" or "we did not anticipate
-it would be so much work"), and (c) the issue is added to a subsequent sprint, so
-that it can be addressed later.
+We were unable to complete the User class, User Registration, and User Login functionality during Sprint 1. These tasks will be carried over to Sprint 2 for implementation and testing.
 ## Completed Issues/User Stories
-Here are links to the issues that we completed in this sprint:
-* URL of issue 1
-* URL of issue 2
-* URL of issue n
-Desirables (Remove this section when you save the file):
-* Each issue should be assigned to a milestone
-* Each completed issue should be assigned to a pull request
-* Each completed pull request should include a link to a "Before and After" video
-* All team members who contributed to the issue should be assigned to it on
-GitHub
-* Each issue should be assigned story points using a label
-* Story points contribution of each team member should be indicated in a comment
+The following issues were completed during Sprint 1:
+- #3 Calculate Compatibility Score
+- #6 ASP.NET Core Setup
+- #9 SQLite Database Integration for Profiles
+- #2 Create Profile Model
+- #4 Create User Profile
+- #10 Get Profile by User ID
 ## Incomplete Issues/User Stories
-Here are links to issues we worked on but did not complete in this sprint:
-* URL of issue 1 <<One sentence explanation of why issue was not completed>>
-* URL of issue 2 <<One sentence explanation of why issue was not completed>>
-* URL of issue n <<One sentence explanation of why issue was not completed>>
-Examples of explanations (Remove this section when you save the file):
-* "We ran into a complication we did not anticipate (explain briefly)."
-* "We decided that the feature did not add sufficient value for us to work on it
-in this sprint (explain briefly)."
-* "We could not reproduce the bug" (explain briefly).
-* "We did not get to this issue because..." (explain briefly)
+- #1 User Login — Not completed during Sprint 1 and will be continued in Sprint 2.
+- #5 User Registration — Not completed during Sprint 1 and will be continued in Sprint 2.
+- User Class — Not completed during Sprint 1 and will be implemented in Sprint 2.
 ## Code Files for Review
 Please review the following code files, which were actively developed during this
 sprint, for quality:
@@ -49,9 +30,9 @@ sprint, for quality:
 * [Name of code file 3](https://github.com/your_repo/file_extension)
 ## Retrospective Summary
 Here's what went well:
-* Item 1
-* Item 2
-* Item x
+* Successfully set up the ASP.NET Core project.
+* Implemented profile features and SQLite database integration.
+* Implemented calculate compatibility score based on two profiles. 
 Here's what we'd like to improve:
 * Item 1
 * Item 2
