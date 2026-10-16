@@ -29,15 +29,15 @@ sprint, for quality:
 * [Name of code file 2](https://github.com/your_repo/file_extension)
 * [Name of code file 3](https://github.com/your_repo/file_extension)
 ## Retrospective Summary
-Here's what went well:
+# Here's what went well:
 * Successfully set up the ASP.NET Core project.
 * Implemented profile features and SQLite database integration.
 * Implemented calculate compatibility score based on two profiles. 
-Here's what we'd like to improve:
+# Here's what we'd like to improve:
 * Improve team communication and task distribution.
 * Update the Kanban Board more consistently.
 * Allocate more time for testing and integration.
-Here are changes we plan to implement in the next sprint:
+# Here are changes we plan to implement in the next sprint:
 * Complete the User class, User Registration, and User Login features.
 * Connect the database and backend functionality to the website.
 * Implement roommate searching and compatibility-based matching features.
