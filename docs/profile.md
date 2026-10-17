@@ -3,13 +3,13 @@
 ## Overview
 The Profile feature allows students to create, view, and update their roommate preferences.
 
-## Attributes
-| Attribute | Type | Description |
-| UserId | int | Identifies the student account |
-| SleepSchedule | int (1–5) | Student's sleep schedule |
-| Cleanliness | int (1–5) | Student's cleanliness preference |
-| NoiseTolerance | int (1–5) | Student's noise tolerance |
-| IsSmoker | bool? | Required; null means unanswered |
+## Attributes  
+| Attribute | Type | Description |  
+| UserId | int | Identifies the student account |  
+| SleepSchedule | int (1–5) | Student's sleep schedule |  
+| Cleanliness | int (1–5) | Student's cleanliness preference |  
+| NoiseTolerance | int (1–5) | Student's noise tolerance |  
+| IsSmoker | bool? | Required; null means unanswered |  
 | OkWithSmoker | bool | Optional; defaults to false |
 
 ## Planned Methods
