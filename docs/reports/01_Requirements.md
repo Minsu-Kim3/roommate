@@ -53,7 +53,7 @@ Then I should be able to see the compatibility score between us
 Given I have not completed my profile update
 When I try to check the compatibility score with another student 
 Then the system should not calculate the compatibility score
-And  I see a message “my profile is not completed”
+And  I see a message “profile is not completed yet”
 ```
 
 ## Feature: Search and send roommate request 
