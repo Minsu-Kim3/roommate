@@ -1,5 +1,5 @@
 # Sprint 1 Report
-Video Link:
+Video Link: https://youtu.be/c-lWHbTxe1E
 ## What's New (User Facing)
 * Profile Model
 * Create Profile functionality
