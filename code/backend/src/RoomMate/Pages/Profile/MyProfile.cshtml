@@ -1,0 +1,22 @@
+@* Displays the user's profile information on the webpage. *@
+@page
+@model RoomMate.Pages.Profile.MyProfileModel
+
+<h2>My Profile</h2>
+
+@if (Model.Profile == null)
+{
+    <p>No profile found.</p>
+}
+else
+{
+    <p>Sleep Schedule: @Model.Profile.SleepSchedule</p>
+    <p>Cleanliness: @Model.Profile.Cleanliness</p>
+    <p>Noise Tolerance: @Model.Profile.NoiseTolerance</p>
+    <p>Smoker: @(Model.Profile.IsSmoker == true ? "Yes" : "No")</p>
+    <p>Okay with Smoker: @(Model.Profile.OkWithSmoker ? "Yes" : "No")</p>
+    
+    <a asp-page="/Profile/Edit" class="btn btn-primary">
+    Edit Profile
+    </a>    
+}
