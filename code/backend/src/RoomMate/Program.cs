@@ -34,6 +34,8 @@ if (app.Environment.IsDevelopment())
 
     db.Database.EnsureCreated();
 
+    //sample students for testing roommate search
+    DevSeed.AddSampleRoommates(db);
 }
 
 // Configure the HTTP request pipeline.
