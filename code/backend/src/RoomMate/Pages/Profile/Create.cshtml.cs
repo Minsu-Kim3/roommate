@@ -1,10 +1,12 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoomMate.Data;
 
 namespace RoomMate.Pages.Profile;
-
+[Authorize]
 public class CreateModel : PageModel
 {
     private readonly RoomMateDbContext _db;
@@ -33,8 +35,21 @@ public class CreateModel : PageModel
     [BindProperty]
     public bool OkWithSmoker { get; set; }
 
-    public void OnGet()
+    public IActionResult OnGet()
     {
+        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdValue, out int userId))
+        {
+            return Challenge();
+        }
+
+        if (_db.Profiles.Any(p => p.UserId == userId))
+        {
+            return RedirectToPage("/Profile/MyProfile");
+        }
+
+        return Page();
     }
 
     public IActionResult OnPost()
@@ -44,8 +59,13 @@ public class CreateModel : PageModel
             return Page();
         }
 
-        // Temporary user until Login is implemented
-        int userId = 1;
+        // Get the user ID from the claims
+        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdValue, out int userId))
+        {
+            return Challenge();
+        }
 
         // Check if user exists
         if (_db.Users.Find(userId) == null)
@@ -71,7 +91,7 @@ public class CreateModel : PageModel
             IsSmoker,
             OkWithSmoker
         );
-
+    
         return RedirectToPage("/Index");
     }
 }

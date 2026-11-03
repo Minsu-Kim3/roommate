@@ -1,4 +1,6 @@
 // Loads and updates the user's profile in the database.
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,6 +8,7 @@ using RoomMate.Data;
 
 namespace RoomMate.Pages.Profile;
 
+[Authorize]
 public class EditModel : PageModel
 {
     private readonly RoomMateDbContext _db;
@@ -36,8 +39,13 @@ public class EditModel : PageModel
 
     public IActionResult OnGet()
     {
-        // Temporary user until Login is implemented
-        int userId = 1;
+        // Get logged-in user's ID
+        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdValue, out int userId))
+        {
+            return Challenge();
+        }
 
         var profile = RoomMate.Models.Profile.GetProfileByUserId(
             _db, userId);
@@ -64,8 +72,12 @@ public class EditModel : PageModel
             return Page();
         }
 
-        // Temporary user until Login is implemented
-        int userId = 1;
+        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdValue, out int userId))
+        {
+            return Challenge();
+        }
 
         var profile = RoomMate.Models.Profile.GetProfileByUserId(
             _db, userId);

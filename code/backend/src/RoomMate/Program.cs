@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using RoomMate.Data;
 using RoomMate.Models;
@@ -5,6 +6,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Cookie authentication
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/Login";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        options.Cookie.SameSite = SameSiteMode.Lax;
+    });
+
 builder.Services.AddDbContext<RoomMateDbContext>(options =>
     options.UseSqlite("Data Source=roommate.db"));
 
@@ -20,18 +34,6 @@ if (app.Environment.IsDevelopment())
 
     db.Database.EnsureCreated();
 
-    // Temporary user for profile testing
-    if (!db.Users.Any(u => u.Email == "test@wsu.edu"))
-    {
-        var testUser = new TempUser
-        {
-            Email = "test@wsu.edu",
-            Password = "123"
-        };
-
-        db.Users.Add(testUser);
-        db.SaveChanges();
-    }
 }
 
 // Configure the HTTP request pipeline.
@@ -46,7 +48,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
