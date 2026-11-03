@@ -1,4 +1,6 @@
 //shows other students ranked by compatibility.
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoomMate.Data;
@@ -6,6 +8,8 @@ using RoomMate.Models;
 
 namespace RoomMate.Pages.Roommates;
 
+//only logged-in users can open this page
+[Authorize]
 public class SearchModel : PageModel{
     private readonly RoomMateDbContext _db;
 
@@ -24,10 +28,14 @@ public class SearchModel : PageModel{
 
     public List<RoommateMatch> Results { get; set; } = new();
 
-    public void OnGet()
+    public IActionResult OnGet()
     {
-        //temp UserId wait until Login is implemented
-        int userId = 1;
+        //get the logged-in user's ID from the login cookie
+        var userIdValue = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(userIdValue, out int userId)){
+            return Challenge();
+        }
 
         //keep the filter in range instead of error
         MinScore = Math.Clamp(MinScore, 0, 100);
@@ -38,9 +46,10 @@ public class SearchModel : PageModel{
         ProfileComplete = myProfile != null && myProfile.IsComplete();
 
         if (!ProfileComplete){
-            return;
+            return Page();
         }
 
         Results = RoomMate.Models.Profile.SearchRoommates( _db, userId, MinScore);
+        return Page();
     }
 }

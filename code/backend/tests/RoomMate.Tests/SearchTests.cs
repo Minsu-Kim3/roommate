@@ -19,7 +19,7 @@ public class SearchTests
 
     // Add a user with a complete profile
     private static void AddStudent(RoomMateDbContext db, int id, int sleep, int clean, int noise, bool smoker, bool okWithSmoker = false){
-        db.Users.Add(new TempUser
+        db.Users.Add(new User
         {
             UserId = id,
             Email = $"student{id}@wsu.edu",
@@ -92,7 +92,7 @@ public class SearchTests
 
         //save an unfinished profile directly (CreateProfile would reject it)
         //sleepSchedule = 0 means the student never rated it.
-        db.Users.Add(new TempUser{
+        db.Users.Add(new User{
             UserId = 2,
             Email = "student2@wsu.edu",
             Password = "test-only-placeholder"

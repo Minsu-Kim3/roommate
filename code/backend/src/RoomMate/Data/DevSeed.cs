@@ -21,7 +21,7 @@ public static class DevSeed
         };
         //create user profile
         foreach (var s in samples){
-            var user = new TempUser{
+            var user = new User{
                 Email = s.Email,
                 Password = "dev-only"
             };
