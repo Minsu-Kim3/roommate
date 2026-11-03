@@ -16,9 +16,10 @@
                 My Profile
             </a>
 
-            <button class="btn btn-secondary m-2" disabled>
-                Search Roommate (Coming Soon)
-            </button>
+            <a asp-page="/Roommates/Search"
+            class="btn btn-secondary m-2">
+                Search Roommate
+            </a>
         </div>
 
         <form method="post" asp-page="/Account/Logout" class="mt-3">
