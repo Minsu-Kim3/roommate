@@ -53,3 +53,19 @@ During Sprint 1, the team focused on establishing the project structure and impl
 - Implemented compatibility score calculation.
 - Created unit tests for the implemented features.
 - Merged the Profile and Compatibility features into the main branch.
+
+## Sprint 2 Progress
+
+During Sprint 2, the team focused on connecting the backend features from Sprint 1 to a working web application.
+
+### Completed Work
+
+- Implemented user registration and login with password hashing.
+- Added cookie-based authentication and user authorization.
+- Connected user accounts to their profiles.
+- Implemented profile creation, viewing, and editing through Razor Pages.
+- Integrated user and profile data with SQLite.
+- Implemented roommate search with compatibility score ranking and filtering.
+- Added unit tests for authentication and roommate search.
+- Integrated the completed features into the Sprint 2 integration branch.
+- Verified the application through automated tests and live demonstrations.
