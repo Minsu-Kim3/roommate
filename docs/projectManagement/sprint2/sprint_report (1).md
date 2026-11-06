@@ -1,5 +1,5 @@
 # Sprint 2 Report
-Video Link: [FINAL UNLISTED YOUTUBE LINK]
+Video Link: https://youtu.be/3irdFzfkSy4
 
 ## What's New (User Facing)
 * User registration with email and password
