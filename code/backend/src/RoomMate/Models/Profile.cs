@@ -24,5 +24,5 @@ public partial class Profile
     public bool OkWithSmoker { get; set; } = false;
 
     // Connect Profile to the temporary User model
-    public TempUser User { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

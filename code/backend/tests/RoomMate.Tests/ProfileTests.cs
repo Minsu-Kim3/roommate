@@ -1,3 +1,6 @@
+// dotnet test code/backend/tests/RoomMate.Tests/RoomMate.Tests.csproj  
+// dotnet run --project code/backend/src/RoomMate/RoomMate.csproj
+
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +34,7 @@ public class ProfileTests
         using var connection = new SqliteConnection("Data Source=:memory:");
         using var db = CreateDatabase(connection);
 
-        db.Users.Add(new TempUser
+        db.Users.Add(new User
         {
             UserId = 101,
             Email = "student101@wsu.edu",
@@ -80,7 +83,7 @@ public class ProfileTests
         using var connection = new SqliteConnection("Data Source=:memory:");
         using var db = CreateDatabase(connection);
 
-        db.Users.Add(new TempUser
+        db.Users.Add(new User
         {
             UserId = 104,
             Email = "student104@wsu.edu",
@@ -100,7 +103,7 @@ public class ProfileTests
         using var connection = new SqliteConnection("Data Source=:memory:");
         using var db = CreateDatabase(connection);
 
-        db.Users.Add(new TempUser
+        db.Users.Add(new User
         {
             UserId = 105,
             Email = "student105@wsu.edu",

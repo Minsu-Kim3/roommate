@@ -24,7 +24,7 @@ public class DatabaseTests
         {
             db.Database.EnsureCreated();
 
-            db.Users.Add(new TempUser
+            db.Users.Add(new User
             {
                 UserId = 1,
                 Email = "student@wsu.edu",

@@ -11,13 +11,13 @@ public class RoomMateDbContext : DbContext
     }
 
     // Database tables
-    public DbSet<TempUser> Users => Set<TempUser>();
+    public DbSet<User> Users => Set<User>();
     public DbSet<Profile> Profiles => Set<Profile>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // One User can have one Profile
-        modelBuilder.Entity<TempUser>()
+        modelBuilder.Entity<User>()
             .HasOne(u => u.Profile)
             .WithOne(p => p.User)
             .HasForeignKey<Profile>(p => p.UserId);

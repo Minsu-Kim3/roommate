@@ -1,0 +1,41 @@
+@* Displays a form for editing the user's profile. *@
+@page
+@model RoomMate.Pages.Profile.EditModel
+
+<h2>Edit Profile</h2>
+
+<form method="post">
+
+    <label>Sleep Schedule (1-5)</label>
+    <input asp-for="SleepSchedule" type="number" min="1" max="5" />
+    <span asp-validation-for="SleepSchedule"></span>
+    <br />
+
+    <label>Cleanliness (1-5)</label>
+    <input asp-for="Cleanliness" type="number" min="1" max="5" />
+    <span asp-validation-for="Cleanliness"></span>
+    <br />
+
+    <label>Noise Tolerance (1-5)</label>
+    <input asp-for="NoiseTolerance" type="number" min="1" max="5" />
+    <span asp-validation-for="NoiseTolerance"></span>
+    <br />
+
+    <label>Are you a smoker?</label>
+    <select asp-for="IsSmoker">
+        <option value="">Select</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <span asp-validation-for="IsSmoker"></span>
+    <br />
+
+    <label>
+        <input asp-for="OkWithSmoker" type="checkbox" />
+        I'm okay with a smoker roommate
+    </label>
+    <br />
+
+    <button type="submit">Save Changes</button>
+
+</form>

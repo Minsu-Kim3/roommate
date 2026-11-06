@@ -1,0 +1,64 @@
+@* Roommate search page: lists compatible students, best match first. *@
+@page
+@model RoomMate.Pages.Roommates.SearchModel
+@{
+    ViewData["Title"] = "Find Roommates";
+}
+
+<h2>Find Roommates</h2>
+
+@if (!Model.HasProfile)
+{
+    <p>You need a profile before you can search for roommates.</p>
+    <a asp-page="/Profile/Create" class="btn btn-primary">Create Profile</a>
+}
+else if (!Model.ProfileComplete)
+{
+    <p>Finish filling out your profile to see compatible roommates.</p>
+    <a asp-page="/Profile/Edit" class="btn btn-primary">Edit Profile</a>
+}
+else
+{
+    <form method="get" class="row g-2 align-items-end mb-3">
+        <div class="col-auto">
+            <label asp-for="MinScore" class="form-label">Minimum compatibility (%)</label>
+            <input asp-for="MinScore" type="number" min="0" max="100" step="5" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    @if (Model.Results.Count == 0)
+    {
+        <p>No compatible roommates found. Try lowering the minimum score.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Compatibility</th>
+                    <th>Sleep Schedule</th>
+                    <th>Cleanliness</th>
+                    <th>Noise Tolerance</th>
+                    <th>Smoker</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var match in Model.Results)
+                {
+                    <tr>
+                        <td>@match.Email</td>
+                        <td>@match.Score.ToString("0.#")%</td>
+                        <td>@match.SleepSchedule</td>
+                        <td>@match.Cleanliness</td>
+                        <td>@match.NoiseTolerance</td>
+                        <td>@(match.IsSmoker ? "Yes" : "No")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}

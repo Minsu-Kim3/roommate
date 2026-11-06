@@ -2,8 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RoomMate.Models;
 
-// Temporary User model until the Account feature is ready
-public class TempUser
+public class User
 {
     [Key]
     public int UserId { get; set; }

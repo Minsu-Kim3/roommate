@@ -1,10 +1,45 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to RoomMate!</h1>
+    <p>Find your ideal roommate.</p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="mt-4">
+            <a asp-page="/Profile/MyProfile"
+               class="btn btn-primary m-2">
+                My Profile
+            </a>
+
+            <a asp-page="/Roommates/Search"
+            class="btn btn-secondary m-2">
+                Search Roommate
+            </a>
+        </div>
+
+        <form method="post" asp-page="/Account/Logout" class="mt-3">
+            <button type="submit" class="btn btn-outline-danger">
+                Logout
+            </button>
+        </form>
+    }
+    else
+    {
+        <div class="mt-4">
+            <a asp-page="/Account/Register"
+               class="btn btn-primary m-2">
+                Register
+            </a>
+
+            <a asp-page="/Account/Login"
+               class="btn btn-outline-primary m-2">
+                Login
+            </a>
+        </div>
+    }
 </div>
