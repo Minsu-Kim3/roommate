@@ -52,9 +52,9 @@ else
                     <tr>
                         <td>@match.Email</td>
                         <td>@match.Score.ToString("0.#")%</td>
-                        <td>@match.SleepSchedule</td>
-                        <td>@match.Cleanliness</td>
-                        <td>@match.NoiseTolerance</td>
+                        <td>@(match.SleepSchedule == 1 ? "Very Early 5:00 AM - 6:00 AM" : match.SleepSchedule == 2 ? "Early 6:00 AM - 7:00 AM" : match.SleepSchedule == 3 ? "Average 7:00 AM - 8:00 AM" : match.SleepSchedule == 4 ? "Late 8:00 AM - 9:00 AM" : "Very Late 9:00 AM - 10:00 AM")</td>
+                        <td>@(match.Cleanliness == 1 ? "Very Messy" : match.Cleanliness == 2 ? "Messy" : match.Cleanliness == 3 ? "Average" : match.Cleanliness == 4 ? "Clean" : "Very Clean")</td>
+                        <td>@(match.NoiseTolerance == 1 ? "Very Sensitive" : match.NoiseTolerance == 2 ? "Somewhat Sensitive" : match.NoiseTolerance == 3 ? "Average sensitivity" : match.NoiseTolerance == 4 ? "Less Sensitive" : "Unbothered by noise")</td>
                         <td>@(match.IsSmoker ? "Yes" : "No")</td>
                     </tr>
                 }

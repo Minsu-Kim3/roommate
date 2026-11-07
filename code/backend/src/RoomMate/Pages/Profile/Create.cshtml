@@ -4,22 +4,76 @@
 <h2>Create Profile</h2>
 
 <form method="post">
-
+    <!--
     <label>Sleep Schedule (1-5)</label>
     <input asp-for="SleepSchedule" type="number" min="1" max="5" />
+    <span asp-validation-for="SleepSchedule"></span>
+    -->
+    <label>Sleep Schedule</label>
+    <select asp-for="SleepSchedule">
+        <option value="">Select Typical Weekday Wake-up Time</option>
+        <option value="1">1 - Very Early 5:00 AM - 6:00 AM</option>
+        <option value="2">2 - Early 6:00 AM - 7:00 AM</option>
+        <option value="3">3 - Average 7:00 AM - 8:00 AM</option>
+        <option value="4">4 - Late 8:00 AM - 9:00 AM</option>
+        <option value="5">5 - Very Late 9:00 AM - 10:00 AM</option>
+    </select>
     <span asp-validation-for="SleepSchedule"></span>
 
     <br />
 
-    <label>Cleanliness (1-5)</label>
-    <input asp-for="Cleanliness" type="number" min="1" max="5" />
+    <label>Cleanliness</label>
+    <select asp-for="Cleanliness">
+        <option value="">Select Cleanliness Level</option>
+        <option value="1">1 - Very Messy</option>
+        <option value="2">2 - Messy</option>
+        <option value="3">3 - Average</option>
+        <option value="4">4 - Clean</option>
+        <option value="5">5 - Very Clean</option>
+    </select>
     <span asp-validation-for="Cleanliness"></span>
 
     <br />
 
-    <label>Noise Tolerance (1-5)</label>
-    <input asp-for="NoiseTolerance" type="number" min="1" max="5" />
+    <label>Noise Tolerance</label>
+    <select asp-for="NoiseTolerance">
+        <option value="">Select Noise Tolerance Level</option>
+        <option value="1">1 - Very Sensitive</option>
+        <option value="2">2 - Somewhat Sensitive</option>
+        <option value="3">3 - Average sensitivity</option>
+        <option value="4">4 - Less Sensitive</option>
+        <option value="5">5 - Unbothered by noise</option>
+    </select>
     <span asp-validation-for="NoiseTolerance"></span>
+
+    <br />
+
+    <label>Social Interaction</label>
+    <select asp-for="SocialInteraction">
+        <option value="">Select Social Interaction Level</option>
+        <option value="1">1 - Very Introverted</option>
+        <option value="2">2 - Somewhat Introverted</option>
+        <option value="3">3 - Ambivert</option>
+        <option value="4">4 - Somewhat Extroverted</option>
+        <option value="5">5 - Very Extroverted</option>
+    </select>
+    <span asp-validation-for="SocialInteraction"></span>
+
+    <br />
+
+    <label>Do you have allergies?</label>
+    <select asp-for="Allergies">
+        <option value="">Select</option>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <span asp-validation-for="Allergies"></span>
+
+    <!-- <br /> -->
+
+    <label>Describe your allergies:</label>
+    <textarea asp-for="AllergiesDescription" class="form-control"></textarea>
+    <span asp-validation-for="AllergiesDescription"></span>
 
     <br />
 

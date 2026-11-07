@@ -31,6 +31,18 @@ public class EditModel : PageModel
     public int NoiseTolerance { get; set; }
 
     [BindProperty]
+    [Range(1, 5)]
+    public int SocialInteraction { get; set; }
+
+    [BindProperty]
+    [Required]
+    public bool Allergies { get; set; }
+
+    [BindProperty]
+    [StringLength(500)]
+    public string? AllergiesDescription { get; set; }
+
+    [BindProperty]
     [Required]
     public bool? IsSmoker { get; set; }
 
@@ -59,6 +71,9 @@ public class EditModel : PageModel
         SleepSchedule = profile.SleepSchedule;
         Cleanliness = profile.Cleanliness;
         NoiseTolerance = profile.NoiseTolerance;
+        SocialInteraction = profile.SocialInteraction;
+        Allergies = profile.Allergies;
+        AllergiesDescription = profile.AllergiesDescription;
         IsSmoker = profile.IsSmoker;
         OkWithSmoker = profile.OkWithSmoker;
 
@@ -91,6 +106,9 @@ public class EditModel : PageModel
         profile.SleepSchedule = SleepSchedule;
         profile.Cleanliness = Cleanliness;
         profile.NoiseTolerance = NoiseTolerance;
+        profile.SocialInteraction = SocialInteraction;
+        profile.Allergies = Allergies;
+        profile.AllergiesDescription = AllergiesDescription;
         profile.IsSmoker = IsSmoker;
         profile.OkWithSmoker = OkWithSmoker;
 

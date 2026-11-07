@@ -11,6 +11,9 @@ public partial class Profile
         int sleepSchedule,
         int cleanliness,
         int noiseTolerance,
+        int socialInteraction,
+        bool allergies,
+        string? allergiesDescription,
         bool? isSmoker,
         bool okWithSmoker = false)
     {
@@ -20,6 +23,9 @@ public partial class Profile
             SleepSchedule = sleepSchedule,
             Cleanliness = cleanliness,
             NoiseTolerance = noiseTolerance,
+            SocialInteraction = socialInteraction,
+            Allergies = allergies,
+            AllergiesDescription = allergiesDescription,
             IsSmoker = isSmoker,
             OkWithSmoker = okWithSmoker
         };

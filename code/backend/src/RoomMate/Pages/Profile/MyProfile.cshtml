@@ -10,12 +10,17 @@
 }
 else
 {
-    <p>Sleep Schedule: @Model.Profile.SleepSchedule</p>
-    <p>Cleanliness: @Model.Profile.Cleanliness</p>
-    <p>Noise Tolerance: @Model.Profile.NoiseTolerance</p>
+    <p>Sleep Schedule: @(Model.Profile.SleepSchedule == 1 ? "Very Early 5:00 AM - 6:00 AM" : Model.Profile.SleepSchedule == 2 ? "Early 6:00 AM - 7:00 AM" : Model.Profile.SleepSchedule == 3 ? "Average 7:00 AM - 8:00 AM" : Model.Profile.SleepSchedule == 4 ? "Late 8:00 AM - 9:00 AM" : "Very Late 9:00 AM - 10:00 AM")</p>
+    <p>Cleanliness: @(Model.Profile.Cleanliness == 1 ? "Very Messy" : Model.Profile.Cleanliness == 2 ? "Messy" : Model.Profile.Cleanliness == 3 ? "Average" : Model.Profile.Cleanliness == 4 ? "Clean" : "Very Clean")</p>
+    <p>Noise Tolerance: @(Model.Profile.NoiseTolerance == 1 ? "Very Sensitive" : Model.Profile.NoiseTolerance == 2 ? "Somewhat Sensitive" : Model.Profile.NoiseTolerance == 3 ? "Average sensitivity" : Model.Profile.NoiseTolerance == 4 ? "Less Sensitive" : "Unbothered by noise")</p>
     <p>Smoker: @(Model.Profile.IsSmoker == true ? "Yes" : "No")</p>
     <p>Okay with Smoker: @(Model.Profile.OkWithSmoker ? "Yes" : "No")</p>
-    
+    <p>Allergies: @(Model.Profile.Allergies == true ? "Yes" : "No")</p>
+    @if (Model.Profile.AllergiesDescription != null)
+    {
+        <p>Allergies Description: @string.Join(", ", Model.Profile.AllergiesDescription)</p>
+    }
+
     <a asp-page="/Profile/Edit" class="btn btn-primary">
     Edit Profile
     </a>    

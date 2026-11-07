@@ -27,6 +27,18 @@ public class CreateModel : PageModel
     [BindProperty]
     [Range(1, 5)]
     public int NoiseTolerance { get; set; }
+    
+    [BindProperty]
+    [Range(1, 5)]
+    public int SocialInteraction { get; set; }
+
+    [BindProperty]
+    [Required]
+    public bool Allergies { get; set; }
+
+    [BindProperty]
+    [StringLength(500)]
+    public string? AllergiesDescription { get; set; }
 
     [BindProperty]
     [Required]
@@ -88,6 +100,9 @@ public class CreateModel : PageModel
             SleepSchedule,
             Cleanliness,
             NoiseTolerance,
+            SocialInteraction,
+            Allergies,
+            AllergiesDescription,
             IsSmoker,
             OkWithSmoker
         );
