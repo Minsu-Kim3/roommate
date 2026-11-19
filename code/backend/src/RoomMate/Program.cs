@@ -24,18 +24,20 @@ builder.Services.AddDbContext<RoomMateDbContext>(options =>
 
 var app = builder.Build();
 
-// Create SQLite database for development
-if (app.Environment.IsDevelopment())
+// Initialize SQLite database
+using (var scope = app.Services.CreateScope())
 {
-    using var scope = app.Services.CreateScope();
-
     var db = scope.ServiceProvider
         .GetRequiredService<RoomMateDbContext>();
 
+    // Create database tables if they do not exist
     db.Database.EnsureCreated();
 
-    //sample students for testing roommate search
-    DevSeed.AddSampleRoommates(db);
+    // Add sample students only in development
+    if (app.Environment.IsDevelopment())
+    {
+        DevSeed.AddSampleRoommates(db);
+    }
 }
 
 // Configure the HTTP request pipeline.
